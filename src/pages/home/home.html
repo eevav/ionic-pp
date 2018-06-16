@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>
+      TO-DO List
+    </ion-title>
+    <ion-buttons end>
+<!--       <button ion-button icon-only (click)="addTodo()">
+        <ion-icon name="add"></ion-icon>
+      </button> -->
+      <button ion-button (click)="toggleEdit()">{{editButton}}</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-fab bottom right #fab1>
+    <button ion-fab icon-only (click)="addTodo()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list lines [reorder]="editing" (ionItemReorder)="reorderTodos($event)">
+    <ion-item-sliding *ngFor="let todo of dataProvider.todos" >
+      <button ion-item (click)="editTodo(todo)"
+              [ngClass]="todo.isDone ? 'done' : ''">
+        {{todo.title}}
+      </button>
+      <ion-item-options side="left" icon-start (ionSwipe)="toggleDone(todo)">
+        <button ion-button color="primary" expandable (click)="toggleDone(todo)">
+          <ion-icon name="checkmark"></ion-icon>
+          Done
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right" icon-start (ionSwipe)="removeTodo(todo)">
+        <button ion-button color="light">
+          <ion-icon name="ios-more"></ion-icon>
+          More
+        </button>
+        <button ion-button color="danger" expandable (click)="removeTodo(todo)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
