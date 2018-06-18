@@ -33,6 +33,11 @@
     </ion-item>
 
     <ion-item>
+      <ion-label floating>Price</ion-label>
+      <ion-input [(ngModel)]="todo.price" type="text" aria-placeholder="€"></ion-input>
+    </ion-item>
+    
+    <ion-item>
       <ion-label>Is Done</ion-label>
       <ion-checkbox checked="false" [(ngModel)]="todo.isDone"></ion-checkbox>
     </ion-item>
